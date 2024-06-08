@@ -10,19 +10,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 
-/**
- * It is basically a main class of the application, because
- * it contains gameboard and models of an object that are
- * take part in the game - player (snake), fruitGenerator, frog
- */
 public class GameBoard extends JPanel implements ActionListener {
 
-    /**
-     * There are gameboard params such as
-     * width, height size of the one point
-     * amounts of the points and rand_pos paramether
-     * to make a random location of an object
-     */
     private final int FIELD_WIDTH = 300;
     private final int FIELD_HEIGHT = 300;
     private final int POINT_SIZE = 10;
@@ -30,25 +19,16 @@ public class GameBoard extends JPanel implements ActionListener {
     private final int RAND_POS = 29;
     private final int DELAY = 140;
 
-    /**
-     * There are x,y arrays to store integers
-     */
     private final int x[] = new int[POINT_AMOUNTS];
     private final int y[] = new int[POINT_AMOUNTS];
 
-    /**
-     * Parameters to specify fruit and frog location
-     */
     private int dots;
     private int fruitX, fruitY;
     private int frogX, frogY;
+    private int obstacleX[] = new int[4]; // Array to store X positions of each rectangle
+    private int obstacleY[] = new int[4]; // Array to store Y positions of each rectangle
 
 
-
-    /**
-     * Parameters to specify move direction and if
-     * game is ended or continued
-     */
     private boolean leftDirection = false;
     private boolean rightDirection = true;
     private boolean upDirection = false;
@@ -62,10 +42,6 @@ public class GameBoard extends JPanel implements ActionListener {
         buildBoard();
     }
 
-    /**
-     * Method to build board - set JPanel propetries and
-     * set keyListener to use inication from keyboard
-     */
     public void buildBoard() {
         addKeyListener(new TAdapter());
         setBackground(Color.black);
@@ -76,9 +52,6 @@ public class GameBoard extends JPanel implements ActionListener {
         gameInitialize();
     }
 
-    /**
-     * Method to load images from the file .png
-     */
     public void loadImages() {
         ImageIcon _ball = new ImageIcon("src/images/ball.png");
         ball = _ball.getImage();
@@ -93,11 +66,6 @@ public class GameBoard extends JPanel implements ActionListener {
         frog = _frog.getImage();
     }
 
-    /**
-     * Method to initialize the game - fulfill x,y arrays
-     * and locate fruit and frog on the gameboard, at the
-     * end start the timer
-     */
     public void gameInitialize() {
         dots = 3;
         for (int i = 0; i < dots; ++i) {
@@ -107,30 +75,50 @@ public class GameBoard extends JPanel implements ActionListener {
 
         locateFruit();
         locateFrog();
+        locateObstacle(); // Locate the obstacle
 
         timer = new Timer(DELAY, this);
         timer.start();
     }
 
+    public void locateFruit() {
+        int r = (int) (Math.random() * RAND_POS);
+        fruitX = r * POINT_SIZE;
+        r = (int) (Math.random() * RAND_POS);
+        fruitY = r * POINT_SIZE;
+    }
 
+    public void locateFrog() {
+        int r = (int) (Math.random() * RAND_POS);
+        frogX = r * POINT_SIZE;
+        r = (int) (Math.random() * RAND_POS);
+        frogY = r * POINT_SIZE;
+    }
 
-    /**
-     * Method to paint components using Graphics object
-     * @param g - instance of Graphics class
-     */
+    public void locateObstacle() {
+        int r = (int) (Math.random() * RAND_POS);
+        obstacleX[0] = r * POINT_SIZE;
+        obstacleY[0] = r * POINT_SIZE;
+
+        for (int i = 1; i < 4; i++) {
+            obstacleX[i] = obstacleX[i - 1] + POINT_SIZE; // Place each rectangle next to the previous one
+            obstacleY[i] = obstacleY[0]; // Align all rectangles at the same Y position
+        }
+    }
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         doDrawing(g);
     }
 
-    /**
-     * Method to draw Images if game is still countinued
-     * @param g - instance of Graphics class
-     */
-    public void doDrawing(Graphics g)  {
+    public void doDrawing(Graphics g) {
         if (inGame) {
             g.drawImage(fruit, fruitX, fruitY, this);
             g.drawImage(frog, frogX, frogY, this);
+            g.setColor(Color.red); // Use a different color or image for the obstacle
+            for (int i = 0; i < 4; i++) {
+                g.fillRect(obstacleX[i], obstacleY[i], POINT_SIZE, POINT_SIZE); // Draw each rectangle
+            }
 
             for (int i = 0; i < dots; ++i) {
                 if (i == 0) {
@@ -145,30 +133,20 @@ public class GameBoard extends JPanel implements ActionListener {
         }
     }
 
-    /**
-     * Method to draw finish message after the end of the game
-     * and create a new SetResultFrame to write and save result
-     * @param g - instance of Graphics class
-     */
-    public void gameOver(Graphics g)  {
+    public void gameOver(Graphics g) {
         final String message = "Game is Over";
         Font messageFont = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics metr = getFontMetrics(messageFont);
 
         g.setColor(Color.white);
         g.setFont(messageFont);
-        g.drawString(message, (FIELD_WIDTH - metr.stringWidth((message)))/ 2, FIELD_HEIGHT / 2);
+        g.drawString(message, (FIELD_WIDTH - metr.stringWidth((message))) / 2, FIELD_HEIGHT / 2);
 
         SetResultFrame addResult = new SetResultFrame(dots - 3);
         addResult.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addResult.setVisible(true);
     }
 
-    /**
-     * Method to check if snake ate a fruit
-     * it means the value of the head of the snake
-     * is the same as fruit's x,y
-     */
     public void checkFruit() {
         if ((x[0] == fruitX) && (y[0] == fruitY)) {
             ++dots;
@@ -176,30 +154,6 @@ public class GameBoard extends JPanel implements ActionListener {
         }
     }
 
-    /**
-     * Method to locate fruit randomnly
-     */
-    public void locateFruit() {
-        int r = (int) (Math.random() * RAND_POS);
-        fruitX = r * POINT_SIZE;
-        r = (int) (Math.random() * RAND_POS);
-        fruitY = r * POINT_SIZE;
-    }
-
-    /**
-     * Method to locate frog randomnly
-     */
-    public void locateFrog() {
-        int r = (int) (Math.random() * RAND_POS);
-        frogX = r * POINT_SIZE;
-        r = (int) (Math.random() * RAND_POS);
-        frogY = r * POINT_SIZE;
-    }
-
-    /**
-     * Same as checkFruit - method to check if
-     * snake ate frog
-     */
     public void checkFrog() {
         if ((x[0] == frogX) && (y[0] == frogY)) {
             ++dots;
@@ -207,9 +161,6 @@ public class GameBoard extends JPanel implements ActionListener {
         }
     }
 
-    /**
-     * method to make a move by frog
-     */
     public void moveFrog() {
         int r = 1 - (int) (Math.random() * 3);
         int moveX = r * POINT_SIZE;
@@ -225,16 +176,40 @@ public class GameBoard extends JPanel implements ActionListener {
         }
     }
 
-    /**
-     * Class to extends KeyAdapter to use
-     * inication from the keyboard to make
-     * snake's move by player
-     */
-    private class TAdapter extends KeyAdapter {
+    private void checkIfCollision() {
+        for (int i = dots; i > 0; --i) {
+            if ((i > 4) && (x[0] == x[i]) && (y[0] == y[i])) {
+                inGame = false;
+            }
+        }
+        if ((y[0] >= FIELD_HEIGHT) || (y[0] < 0) || (x[0] >= FIELD_WIDTH) || (x[0] < 0)) {
+            inGame = false;
+        }
+        for (int i = 0; i < 4; i++) {
+            if ((x[0] == obstacleX[i]) && (y[0] == obstacleY[i])) { // Check if the snake hits any part of the obstacle line
+                inGame = false;
+                break; // Exit loop early if collision detected
+            }
+        }
+        if (!inGame) {
+            timer.stop();
+        }
+    }
 
+    public void makeMove() {
+        for (int i = dots; i > 0; --i) {
+            x[i] = x[i - 1];
+            y[i] = y[i - 1];
+        }
+        if (leftDirection) x[0] -= POINT_SIZE;
+        if (rightDirection) x[0] += POINT_SIZE;
+        if (upDirection) y[0] -= POINT_SIZE;
+        if (downDirection) y[0] += POINT_SIZE;
+    }
+
+    private class TAdapter extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
-
             int key = e.getKeyCode();
 
             if ((key == KeyEvent.VK_LEFT) && (!rightDirection)) {
@@ -263,17 +238,11 @@ public class GameBoard extends JPanel implements ActionListener {
         }
     }
 
-    /**
-     * Main method make an events service - if game is not
-     * ended then it is making a 3 threads for snake, frog and
-     * fruit that all of this object can run simultaneously
-     * @param e - instance of an class ActionEvent
-     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (inGame) {
             Thread fruitThread = new Thread(this::checkFruit);
-            Thread playerThreat = new Thread(() -> {
+            Thread playerThread = new Thread(() -> {
                 checkIfCollision();
                 makeMove();
             });
@@ -282,47 +251,16 @@ public class GameBoard extends JPanel implements ActionListener {
                 moveFrog();
             });
             fruitThread.start();
-            playerThreat.start();
+            playerThread.start();
             frogThread.start();
             try {
                 fruitThread.join();
-                playerThreat.join();
+                playerThread.join();
                 frogThread.join();
             } catch (InterruptedException interruptedException) {
                 System.out.println(interruptedException.getMessage());
             }
         }
         repaint();
-    }
-
-    /**
-     * Method to check if collision advanced
-     */
-    private void checkIfCollision() {
-        for (int i = dots; i > 0; --i) {
-            if ((i > 4 ) && (x[0] == x[i]) && (y[0] == y[i])) {
-                inGame = false;
-            }
-        }
-        if ((y[0] >= FIELD_HEIGHT) || (y[0] < 0) || (x[0] >= FIELD_WIDTH) || (x[0] < 0)) {
-            inGame = false;
-        }
-        if (!inGame) {
-            timer.stop();
-        }
-    }
-
-    /**
-     * Method to make a move by player (snake)
-     */
-    public void makeMove() {
-        for (int i = dots; i > 0; --i) {
-            x[i] = x[i - 1];
-            y[i] = y[i - 1];
-        }
-        if (leftDirection) x[0] -= POINT_SIZE;
-        if (rightDirection) x[0] += POINT_SIZE;
-        if (upDirection) y[0] -= POINT_SIZE;
-        if (downDirection) y[0] += POINT_SIZE;
     }
 }
