@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="765df043-57ca-4c80-96dc-bcc88266f79a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Frog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Fruit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Computer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/platformy_programistyczne/Frame/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Frame/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Frog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Frog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Fruit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Fruit.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +92,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717869595105</updated>
-      <workItem from="1717869596464" duration="5454000" />
+      <workItem from="1717869596464" duration="6728000" />
     </task>
     <task id="LOCAL-00001" summary="dasdas">
       <created>1717874798264</created>
@@ -99,7 +101,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717874798264</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="dasdas">
+      <created>1717876058647</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1717876058647</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

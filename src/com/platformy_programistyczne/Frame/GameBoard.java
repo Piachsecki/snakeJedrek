@@ -1,6 +1,8 @@
 package com.platformy_programistyczne.Frame;
 
 import com.platformy_programistyczne.Frame.SetResultFrame;
+import com.platformy_programistyczne.Model.Frog;
+import com.platformy_programistyczne.Model.Fruit;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,19 +14,19 @@ import java.io.IOException;
 
 public class GameBoard extends JPanel implements ActionListener {
 
-    private final int FIELD_WIDTH = 300;
-    private final int FIELD_HEIGHT = 300;
-    private final int POINT_SIZE = 10;
-    private final int POINT_AMOUNTS = 900;
-    private final int RAND_POS = 29;
-    private final int DELAY = 140;
+    public static final int FIELD_WIDTH = 300;
+    public static final int FIELD_HEIGHT = 300;
+    public static final int POINT_SIZE = 10;
+    public static final int POINT_AMOUNTS = 900;
+    public static final int RAND_POS = 29;
+    public final int DELAY = 140;
 
     private final int x[] = new int[POINT_AMOUNTS];
     private final int y[] = new int[POINT_AMOUNTS];
 
     private int dots;
-    private int fruitX, fruitY;
-    private int frogX, frogY;
+    private Fruit fruitS;
+    private Frog frogS;
     private int obstacleX[] = new int[4]; // Array to store X positions of each rectangle
     private int obstacleY[] = new int[4]; // Array to store Y positions of each rectangle
 
@@ -82,17 +84,22 @@ public class GameBoard extends JPanel implements ActionListener {
     }
 
     public void locateFruit() {
+        this.fruitS = new Fruit();
+
         int r = (int) (Math.random() * RAND_POS);
-        fruitX = r * POINT_SIZE;
+        this.fruitS.setFruitX(r * POINT_SIZE);
         r = (int) (Math.random() * RAND_POS);
-        fruitY = r * POINT_SIZE;
+        this.fruitS.setFruitY(r * POINT_SIZE);
+
     }
 
     public void locateFrog() {
+        this.frogS = new Frog();
         int r = (int) (Math.random() * RAND_POS);
-        frogX = r * POINT_SIZE;
+        this.frogS.setFrogX(r * POINT_SIZE);
+
         r = (int) (Math.random() * RAND_POS);
-        frogY = r * POINT_SIZE;
+        this.frogS.setFrogY(r * POINT_SIZE);
     }
 
     public void locateObstacle() {
@@ -113,8 +120,8 @@ public class GameBoard extends JPanel implements ActionListener {
 
     public void doDrawing(Graphics g) {
         if (inGame) {
-            g.drawImage(fruit, fruitX, fruitY, this);
-            g.drawImage(frog, frogX, frogY, this);
+            g.drawImage(fruit, fruitS.getFruitX(), fruitS.getFruitY(), this);
+            g.drawImage(frog, frogS.getFrogX(), frogS.getFrogY(), this);
             g.setColor(Color.red); // Use a different color or image for the obstacle
             for (int i = 0; i < 4; i++) {
                 g.fillRect(obstacleX[i], obstacleY[i], POINT_SIZE, POINT_SIZE); // Draw each rectangle
@@ -148,14 +155,14 @@ public class GameBoard extends JPanel implements ActionListener {
     }
 
     public void checkFruit() {
-        if ((x[0] == fruitX) && (y[0] == fruitY)) {
+        if ((x[0] == fruitS.getFruitX()) && (y[0] == fruitS.getFruitY())) {
             ++dots;
             locateFruit();
         }
     }
 
     public void checkFrog() {
-        if ((x[0] == frogX) && (y[0] == frogY)) {
+        if ((x[0] == frogS.getFrogX()) && (y[0] == frogS.getFrogY())) {
             ++dots;
             locateFrog();
         }
@@ -165,14 +172,14 @@ public class GameBoard extends JPanel implements ActionListener {
         int r = 1 - (int) (Math.random() * 3);
         int moveX = r * POINT_SIZE;
 
-        if ((frogX + moveX) < FIELD_WIDTH && (frogX + moveX) > 0) {
-            frogX += moveX;
+        if ((frogS.getFrogX() + moveX) < FIELD_WIDTH && (frogS.getFrogX() + moveX) > 0) {
+            frogS.setFrogX(frogS.getFrogX()+moveX);
         }
 
         r = 1 - (int) (Math.random() * 3);
         int moveY = r * POINT_SIZE;
-        if ((frogY + moveY) < FIELD_HEIGHT && (frogY + moveY) > 0) {
-            frogY += moveY;
+        if ((frogS.getFrogY() + moveY) < FIELD_HEIGHT && (frogS.getFrogY() + moveY) > 0) {
+            frogS.setFrogY(frogS.getFrogY()+moveY);
         }
     }
 
