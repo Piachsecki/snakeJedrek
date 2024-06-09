@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="765df043-57ca-4c80-96dc-bcc88266f79a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/DefaultSnake.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Results/result.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Results/result.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/platformy_programistyczne/Frame/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Frame/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/platformy_programistyczne/Frame/ResultFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Frame/ResultFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/platformy_programistyczne/Frame/SetResultFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Frame/SetResultFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/platformy_programistyczne/Frame/WelcomeFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Frame/WelcomeFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Computer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Computer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Frog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Frog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Result.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/ResultReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/ResultReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/platformy_programistyczne/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Snake.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +98,7 @@
       <option name="presentableId" value="Default" />
       <updated>1717869595105</updated>
       <workItem from="1717869596464" duration="8028000" />
-      <workItem from="1717918459647" duration="1822000" />
+      <workItem from="1717918459647" duration="3687000" />
     </task>
     <task id="LOCAL-00001" summary="dasdas">
       <created>1717874798264</created>
@@ -115,15 +121,34 @@
       <option name="project" value="LOCAL" />
       <updated>1717877607142</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="working, trying to implement a computer better">
+      <created>1717920520753</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1717920520753</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="dasdas" />
     <MESSAGE value="working" />
-    <option name="LAST_COMMIT_MESSAGE" value="working" />
+    <MESSAGE value="working, trying to implement a computer better" />
+    <option name="LAST_COMMIT_MESSAGE" value="working, trying to implement a computer better" />
   </component>
 </project>

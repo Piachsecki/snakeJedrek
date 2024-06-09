@@ -6,16 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- * Class to read all results with one static method
- */
+
 public class ResultReader {
 
-    /**
-     *
-     * @return ArrayList with all results read from the file
-     * @throws FileNotFoundException - exception advanced if file not exists
-     */
     public static ArrayList<Result> getAllResult() throws FileNotFoundException {
         var results = new ArrayList<Result>();
         BufferedReader reader = new BufferedReader(new FileReader("src/Results/result.txt"));

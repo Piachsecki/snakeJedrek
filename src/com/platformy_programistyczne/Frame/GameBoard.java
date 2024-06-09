@@ -159,17 +159,18 @@ public class GameBoard extends JPanel implements ActionListener {
 
     public void checkFruit() {
         if ((player.getX()[0] == fruitS.getFruitX()) && (player.getY()[0] == fruitS.getFruitY())) {
-            ++player.dots;
+            player.dots++;
             locateFruit();
         }
 
         for (Computer computer : computers) {
-            if ((computer.getX()[0] == frogS.getFrogX()) && (computer.getY()[0] == frogS.getFrogY())) {
-                ++computer.dots;
-                locateFrog();
+            if ((computer.getX()[0] == fruitS.getFruitX()) && (computer.getY()[0] == fruitS.getFruitY())) {
+                computer.dots++;
+                locateFruit();
             }
         }
     }
+
 
     public void checkFrog() {
         if ((player.getX()[0] == frogS.getFrogX()) && (player.getY()[0] == frogS.getFrogY())) {
@@ -219,7 +220,7 @@ public class GameBoard extends JPanel implements ActionListener {
         // Check collision between Player and Computer
         for (Computer computer : computers) {
             for (int i = computer.dots; i > 0; --i) {
-                if ((computer.getX()[0] == player.getX()[0]) && (computer.getY()[0] == player.getY()[0])) {
+                if ((computer.getX()[i] == player.getX()[0]) && (computer.getY()[i] == player.getY()[0])) {
                     inGame = false;
                 }
             }
@@ -232,7 +233,7 @@ public class GameBoard extends JPanel implements ActionListener {
     }
 
     private void checkComputerCollision() {
-        // Check collision between Computers (optional)
+//        // Check collision between Computers (optional)
         for (int i = 0; i < computers.size(); ++i) {
             Computer c1 = computers.get(i);
             for (int j = i + 1; j < computers.size(); ++j) {
@@ -246,7 +247,7 @@ public class GameBoard extends JPanel implements ActionListener {
 
         // Check collision with walls for Computers
         for (Computer computer : computers) {
-            if ((computer.getY()[0] == FIELD_HEIGHT - 1) || (computer.getY()[0] < 0) || (computer.getX()[0] == FIELD_WIDTH - 1) || (computer.getX()[0] < 0)) {
+            if ((computer.getY()[0] >= FIELD_HEIGHT) || (computer.getY()[0] < 0) || (computer.getX()[0] >= FIELD_WIDTH) || (computer.getX()[0] < 0)) {
                 computer.reverseDirection();
             }
         }

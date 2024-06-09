@@ -6,18 +6,14 @@ import com.platformy_programistyczne.Frame.WelcomeFrame;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Main frame of the game - frame with gameBoard
- */
+
 public class Snake extends JFrame {
 
     public Snake() {
         initWindow();
     }
 
-    /**
-     * Method to set SnakeFrame properties
-     */
+
     public void initWindow() {
         add(new GameBoard());
         setResizable(false);

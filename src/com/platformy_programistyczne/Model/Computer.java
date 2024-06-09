@@ -12,8 +12,8 @@ public class Computer extends DefaultSnake{
     public void init() {
         dots = 3;
         for (int i = 0; i < dots; i++) {
-            x[i] = 50 - i * GameBoard.POINT_SIZE;
-            y[i] = 50;
+            x[i] = 200 - i * GameBoard.POINT_SIZE;
+            y[i] = 10;
         }
         leftDirection = false;
         rightDirection = true;

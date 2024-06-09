@@ -4,10 +4,6 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Result model class specified by player's name
- * and value of a result (how many fruits/frogs snake ate)
- */
 public class Result {
     private int result;
     private String name;
@@ -35,11 +31,7 @@ public class Result {
         this.name = name;
     }
 
-    /**
-     * Method to append result to the file result.txt
-     * @throws IOException - exception advanced if there is some problem with input/output
-     * operations
-     */
+
     public void saveResult() throws IOException {
         var output = new BufferedWriter(new FileWriter("src/results/result.txt", true));
         output.append(name + " " + result + "\n");

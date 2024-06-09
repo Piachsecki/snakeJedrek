@@ -8,11 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-/**
- * JFrame to set a name of the player
- * that it will be written to the file
- * with player's result current game
- */
+
 public class SetResultFrame extends JFrame implements ActionListener {
     private JTextField name;
     private int result;
@@ -33,12 +29,7 @@ public class SetResultFrame extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-    /**
-     * action performed method to check if
-     * button is pressed then make a new
-     * result object and write it to the file
-     * @param e
-     */
+
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
