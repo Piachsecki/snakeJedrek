@@ -1,4 +1,4 @@
-package com.platformy_programistyczne.Model;
+package kusnierz.Model;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

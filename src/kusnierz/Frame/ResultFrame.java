@@ -1,6 +1,6 @@
-package com.platformy_programistyczne.Frame;
+package kusnierz.Frame;
 
-import com.platformy_programistyczne.Model.ResultReader;
+import kusnierz.Model.ResultReader;
 
 import javax.swing.*;
 import java.io.FileNotFoundException;

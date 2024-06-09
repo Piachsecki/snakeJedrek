@@ -1,9 +1,9 @@
-package com.platformy_programistyczne.Frame;
+package kusnierz.Frame;
 
-import com.platformy_programistyczne.Model.Computer;
-import com.platformy_programistyczne.Model.Frog;
-import com.platformy_programistyczne.Model.Fruit;
-import com.platformy_programistyczne.Model.Player;
+import kusnierz.Model.Computer;
+import kusnierz.Model.Frog;
+import kusnierz.Model.Fruit;
+import kusnierz.Model.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,29 +13,42 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-public class GameBoard extends JPanel implements ActionListener {
-    public static final int FIELD_WIDTH = 300;
-    public static final int FIELD_HEIGHT = 300;
-    public static final int POINT_SIZE = 10;
-    public static final int POINT_AMOUNTS = 900;
-    public static final int RAND_POS = 29;
-    public final int DELAY = 140;
+import static kusnierz.Frame.Constants.*;
+
+/**
+ * The GameBoard class represents the game board of the Snake game application.
+ * It extends the JPanel class and implements the ActionListener interface to handle game updates.
+ *
+ * <p>The game board contains the logic for managing the game state, drawing the game elements, handling user input,
+ * and updating the game state during gameplay.</p>
+ *
+ * @see kusnierz.Model.Computer
+ * @see kusnierz.Model.Frog
+ * @see kusnierz.Model.Fruit
+ * @see kusnierz.Model.Player
+ */
+
+public class Board extends JPanel implements ActionListener {
     public boolean inGame = true;
     private Player player;
-    private Fruit fruitS;
-    private Frog frogS;
+    private Fruit myFruit;
+    private Frog myFrong;
     private ArrayList<Computer> computers;
     private int obstacleX[] = new int[4]; // Array to store X positions of each rectangle
     private int obstacleY[] = new int[4]; // Array to store Y positions of each rectangle
     private Timer timer;
     private Image ball, fruit, head, frog;
-
-    public GameBoard() {
+    /**
+     * Constructs a GameBoard object and initializes the game board.
+     */
+    public Board() {
         buildBoard();
     }
-
+    /**
+     * Initializes the game board by setting up the panel, loading images, and initializing the game state.
+     */
     public void buildBoard() {
-        addKeyListener(new TAdapter());
+        addKeyListener(new MyAdapter());
         setBackground(Color.black);
         setFocusable(true);
 
@@ -44,6 +57,9 @@ public class GameBoard extends JPanel implements ActionListener {
         gameInitialize();
     }
 
+    /**
+     * Loads images used in the game.
+     */
     public void loadImages() {
         ImageIcon _ball = new ImageIcon("src/images/ball.png");
         ball = _ball.getImage();
@@ -57,7 +73,9 @@ public class GameBoard extends JPanel implements ActionListener {
         ImageIcon _frog = new ImageIcon("src/images/frog.png");
         frog = _frog.getImage();
     }
-
+    /**
+     * Initializes the game state, including player, computer, fruit, frog, and obstacles.
+     */
     public void gameInitialize() {
         this.player = new Player();
 
@@ -69,29 +87,35 @@ public class GameBoard extends JPanel implements ActionListener {
         locateFrog();
         locateObstacle(); // Locate the obstacle
 
-        timer = new Timer(DELAY, this);
+        timer = new Timer(Constants.DELAY, this);
         timer.start();
     }
-
+    /**
+     * Places the fruit at a random position on the game board.
+     */
     public void locateFruit() {
-        this.fruitS = new Fruit();
+        this.myFruit = new Fruit();
 
         int r = (int) (Math.random() * RAND_POS);
-        this.fruitS.setFruitX(r * POINT_SIZE);
+        this.myFruit.setFruitX(r * POINT_SIZE);
         r = (int) (Math.random() * RAND_POS);
-        this.fruitS.setFruitY(r * POINT_SIZE);
+        this.myFruit.setFruitY(r * POINT_SIZE);
 
     }
-
+    /**
+     * Places the frog at a random position on the game board.
+     */
     public void locateFrog() {
-        this.frogS = new Frog();
+        this.myFrong = new Frog();
         int r = (int) (Math.random() * RAND_POS);
-        this.frogS.setFrogX(r * POINT_SIZE);
+        this.myFrong.setFrogX(r * POINT_SIZE);
 
         r = (int) (Math.random() * RAND_POS);
-        this.frogS.setFrogY(r * POINT_SIZE);
+        this.myFrong.setFrogY(r * POINT_SIZE);
     }
-
+    /**
+     * Places the obstacles on the game board.
+     */
     public void locateObstacle() {
         int r = (int) (Math.random() * RAND_POS);
         obstacleX[0] = r * POINT_SIZE;
@@ -102,16 +126,20 @@ public class GameBoard extends JPanel implements ActionListener {
             obstacleY[i] = obstacleY[0]; // Align all rectangles at the same Y position
         }
     }
-
+    /**
+     * Paints the game board and its elements.
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         doDrawing(g);
     }
-
+    /**
+     * Draws the game elements on the game board.
+     */
     public void doDrawing(Graphics g) {
         if (inGame) {
-            g.drawImage(fruit, fruitS.getFruitX(), fruitS.getFruitY(), this);
-            g.drawImage(frog, frogS.getFrogX(), frogS.getFrogY(), this);
+            g.drawImage(fruit, myFruit.getFruitX(), myFruit.getFruitY(), this);
+            g.drawImage(frog, myFrong.getFrogX(), myFrong.getFrogY(), this);
             g.setColor(Color.red); // Use a different color or image for the obstacle
             for (int i = 0; i < 4; i++) {
                 g.fillRect(obstacleX[i], obstacleY[i], POINT_SIZE, POINT_SIZE); // Draw each rectangle
@@ -142,9 +170,11 @@ public class GameBoard extends JPanel implements ActionListener {
             gameOver(g);
         }
     }
-
+    /**
+     * Draws the game over message when the game ends.
+     */
     public void gameOver(Graphics g) {
-        final String message = "Game is Over";
+        final String message = "Game Over";
         Font messageFont = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics metr = getFontMetrics(messageFont);
 
@@ -152,56 +182,47 @@ public class GameBoard extends JPanel implements ActionListener {
         g.setFont(messageFont);
         g.drawString(message, (FIELD_WIDTH - metr.stringWidth((message))) / 2, FIELD_HEIGHT / 2);
 
-        SetResultFrame addResult = new SetResultFrame(player.dots - 3);
+        ResultingFrame addResult = new ResultingFrame(player.dots - 3);
         addResult.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addResult.setVisible(true);
     }
 
+    /**
+     * Checks if the player has eaten the fruit and updates the game state accordingly.
+     */
     public void checkFruit() {
-        if ((player.getX()[0] == fruitS.getFruitX()) && (player.getY()[0] == fruitS.getFruitY())) {
+        if ((player.getX()[0] == myFruit.getFruitX()) && (player.getY()[0] == myFruit.getFruitY())) {
             player.dots++;
             locateFruit();
         }
 
         for (Computer computer : computers) {
-            if ((computer.getX()[0] == fruitS.getFruitX()) && (computer.getY()[0] == fruitS.getFruitY())) {
+            if ((computer.getX()[0] == myFruit.getFruitX()) && (computer.getY()[0] == myFruit.getFruitY())) {
                 computer.dots++;
                 locateFruit();
             }
         }
     }
 
-
+    /**
+     * Checks if the player or computers have collided with the frog and updates the game state accordingly.
+     */
     public void checkFrog() {
-        if ((player.getX()[0] == frogS.getFrogX()) && (player.getY()[0] == frogS.getFrogY())) {
+        if ((player.getX()[0] == myFrong.getFrogX()) && (player.getY()[0] == myFrong.getFrogY())) {
             ++player.dots;
             locateFrog();
         }
         for (Computer computer : computers) {
-            if ((computer.getX()[0] == frogS.getFrogX()) && (computer.getY()[0] == frogS.getFrogY())) {
+            if ((computer.getX()[0] == myFrong.getFrogX()) && (computer.getY()[0] == myFrong.getFrogY())) {
                 ++computer.dots;
                 locateFrog();
             }
         }
-
-
     }
 
-    public void moveFrog() {
-        int r = 1 - (int) (Math.random() * 3);
-        int moveX = r * POINT_SIZE;
-
-        if ((frogS.getFrogX() + moveX) < FIELD_WIDTH && (frogS.getFrogX() + moveX) > 0) {
-            frogS.setFrogX(frogS.getFrogX() + moveX);
-        }
-
-        r = 1 - (int) (Math.random() * 3);
-        int moveY = r * POINT_SIZE;
-        if ((frogS.getFrogY() + moveY) < FIELD_HEIGHT && (frogS.getFrogY() + moveY) > 0) {
-            frogS.setFrogY(frogS.getFrogY() + moveY);
-        }
-    }
-
+    /**
+     * Checks for collisions between game elements and updates the game state accordingly.
+     */
     private void checkIfCollision() {
         for (int i = player.dots; i > 0; --i) {
             if ((i > 4) && (player.getX()[0] == player.getX()[i]) && (player.getY()[0] == player.getY()[i])) {
@@ -229,9 +250,11 @@ public class GameBoard extends JPanel implements ActionListener {
         if (!inGame) {
             timer.stop();
         }
-
     }
 
+    /**
+     * Checks for collisions between computers and updates their movement accordingly.
+     */
     private void checkComputerCollision() {
 //        // Check collision between Computers (optional)
         for (int i = 0; i < computers.size(); ++i) {
@@ -264,17 +287,9 @@ public class GameBoard extends JPanel implements ActionListener {
     }
 
 
-    public void makeMove() {
-        for (int i = player.dots; i > 0; --i) {
-            player.getX()[i] = player.getX()[i - 1];
-            player.getY()[i] = player.getY()[i - 1];
-        }
-
-        if (player.leftDirection) player.getX()[0] -= POINT_SIZE;
-        if (player.rightDirection) player.getX()[0] += POINT_SIZE;
-        if (player.upDirection) player.getY()[0] -= POINT_SIZE;
-        if (player.downDirection) player.getY()[0] += POINT_SIZE;
-    }
+    /**
+     * Handles the game logic and updates the game state in response to timer ticks.
+     */
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -282,16 +297,16 @@ public class GameBoard extends JPanel implements ActionListener {
             Thread fruitThread = new Thread(this::checkFruit);
             Thread playerThread = new Thread(() -> {
                 checkIfCollision();
-                makeMove();
+                this.player.move();
             });
             Thread frogThread = new Thread(() -> {
                 checkFrog();
-                moveFrog();
+                this.myFrong.move();
             });
             Thread computerThread = new Thread(() -> {
                 checkComputerCollision();
                 for (Computer computer : computers) {
-                    computer.updateDirection(fruitS.getFruitX(), fruitS.getFruitY());
+                    computer.updateDirection(myFruit.getFruitX(), myFruit.getFruitY());
                     computer.move();
                 }
             });
@@ -313,7 +328,10 @@ public class GameBoard extends JPanel implements ActionListener {
         repaint();
     }
 
-    private class TAdapter extends KeyAdapter {
+    /**
+     * Handles keyboard input for controlling the player's movement.
+     */
+    private class MyAdapter extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();

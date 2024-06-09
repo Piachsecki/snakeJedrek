@@ -1,6 +1,6 @@
-package com.platformy_programistyczne.Frame;
+package kusnierz.Frame;
 
-import com.platformy_programistyczne.Model.Result;
+import kusnierz.Model.Result;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,16 +9,16 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 
-public class SetResultFrame extends JFrame implements ActionListener {
-    private JTextField name;
-    private int result;
-    private JButton confirmButton;
-    private JLabel text;
-    public SetResultFrame(int result) {
+public class ResultingFrame extends JFrame implements ActionListener {
+    private final JTextField name;
+    private final int result;
+    private final JButton confirmButton;
+
+    public ResultingFrame(int result) {
         setSize(300, 300);
         setLayout(new GridLayout(3, 1));
         this.result = result;
-        text = new JLabel("Set your name");
+        JLabel text = new JLabel("Set your name");
         add(text);
         name = new JTextField();
         add(name);

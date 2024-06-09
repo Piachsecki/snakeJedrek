@@ -1,4 +1,4 @@
-package com.platformy_programistyczne.Model;
+package kusnierz.Model;
 
 import java.io.*;
 import java.util.HashMap;

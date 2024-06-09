@@ -1,18 +1,25 @@
-package com.platformy_programistyczne.Model;
+package kusnierz.Model;
 
-import com.platformy_programistyczne.Frame.GameBoard;
+import static kusnierz.Frame.Constants.POINT_SIZE;
 
-public class Computer extends DefaultSnake{
+public class Computer extends DefaultSnake {
     private boolean stopped;
 
+    /**
+     * Constructs a Computer object and initializes the snake's starting position and direction.
+     */
     public Computer() {
         init();
     }
 
+    /**
+     * Initializes the snake with a default length of 3 segments, positioned horizontally on the game board.
+     * The initial direction is set to move right.
+     */
     public void init() {
         dots = 3;
         for (int i = 0; i < dots; i++) {
-            x[i] = 200 - i * GameBoard.POINT_SIZE;
+            x[i] = 200 - i * POINT_SIZE;
             y[i] = 10;
         }
         leftDirection = false;
@@ -22,14 +29,28 @@ public class Computer extends DefaultSnake{
         stopped = false;
     }
 
+    /**
+     * Gets the X coordinates of the snake's segments.
+     *
+     * @return an array of X coordinates of the snake's segments
+     */
     public int[] getX() {
         return x;
     }
 
+    /**
+     * Gets the Y coordinates of the snake's segments.
+     *
+     * @return an array of Y coordinates of the snake's segments
+     */
     public int[] getY() {
         return y;
     }
 
+    /**
+     * Moves the snake by updating the position of its segments based on the current direction.
+     * The movement is halted if the snake is stopped.
+     */
     public void move() {
         if (!stopped) {
             for (int i = dots; i > 0; i--) {
@@ -38,23 +59,29 @@ public class Computer extends DefaultSnake{
             }
 
             if (leftDirection) {
-                x[0] -= GameBoard.POINT_SIZE;
+                x[0] -= POINT_SIZE;
             }
 
             if (rightDirection) {
-                x[0] += GameBoard.POINT_SIZE;
+                x[0] += POINT_SIZE;
             }
 
             if (upDirection) {
-                y[0] -= GameBoard.POINT_SIZE;
+                y[0] -= POINT_SIZE;
             }
 
             if (downDirection) {
-                y[0] += GameBoard.POINT_SIZE;
+                y[0] += POINT_SIZE;
             }
         }
     }
 
+    /**
+     * Updates the snake's direction to move towards the given fruit coordinates.
+     *
+     * @param fruitX the X coordinate of the fruit
+     * @param fruitY the Y coordinate of the fruit
+     */
     public void updateDirection(int fruitX, int fruitY) {
         if (x[0] < fruitX) {
             rightDirection = true;
@@ -79,6 +106,9 @@ public class Computer extends DefaultSnake{
         }
     }
 
+    /**
+     * Reverses the snake's current direction.
+     */
     public void reverseDirection() {
         if (leftDirection) {
             leftDirection = false;
@@ -94,12 +124,22 @@ public class Computer extends DefaultSnake{
             upDirection = true;
         }
     }
+
+    /**
+     * Checks if the snake is stopped.
+     *
+     * @return true if the snake is stopped, false otherwise
+     */
     public boolean isStopped() {
         return stopped;
     }
 
+    /**
+     * Sets the snake's stopped state.
+     *
+     * @param stopped the new stopped state
+     */
     public void setStopped(boolean stopped) {
         this.stopped = stopped;
     }
 }
-
