@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="765df043-57ca-4c80-96dc-bcc88266f79a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Computer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/DefaultSnake.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/platformy_programistyczne/Frame/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Frame/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Frog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Frog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Fruit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Fruit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Computer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Computer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/platformy_programistyczne/Model/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,15 +32,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/krpia/IdeaProjects/snakeJedrek"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/krpia/IdeaProjects/snakeJedrek&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\krpia\IdeaProjects\snakeJedrek" />
@@ -92,7 +91,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717869595105</updated>
-      <workItem from="1717869596464" duration="6728000" />
+      <workItem from="1717869596464" duration="8028000" />
+      <workItem from="1717918459647" duration="1822000" />
     </task>
     <task id="LOCAL-00001" summary="dasdas">
       <created>1717874798264</created>
@@ -108,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717876058647</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="working">
+      <created>1717877607142</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1717877607142</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -116,6 +123,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="dasdas" />
-    <option name="LAST_COMMIT_MESSAGE" value="dasdas" />
+    <MESSAGE value="working" />
+    <option name="LAST_COMMIT_MESSAGE" value="working" />
   </component>
 </project>
